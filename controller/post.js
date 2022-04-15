@@ -2,6 +2,7 @@ const knex=require('../model/db')
 
 const user_communication=(req,res)=>{
     const dic1={
+        user_id:req.body.user_id,
         House_Number:req.body.House_Number,
         Locality:req.body.Locality,
         Pin_Code:req.body.Pin_Code
@@ -20,6 +21,7 @@ const user_communication=(req,res)=>{
 const get_data=(req,res)=>{
     knex('communication')
     .join("signup","communication.user_id","signup.user_id")
+    // .join('signup','communication.communication_id','signup.id') 
     // .select('todolist.title','todolist.description','Users.username')
     .select("*")
     .then((data)=>{
